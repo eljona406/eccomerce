@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutGap="4px">
+    <div fxLayout fxLayoutAlign="start center" fxLayoutGap="4px">
+        <div fxFlex="10">
+            <button fxFlexFill mat-raised-button [color]="gender === 1 ? 'primary' : ''" (click)="onGenderSelect(1)">Male</button>
+        </div>
+        <div fxFlex="10">
+            <button fxFlexFill mat-raised-button [color]="gender === 2 ? 'primary' : ''" (click)="onGenderSelect(2)">Female</button>
+        </div>
+    </div>
+    <div fxLayout fxLayoutAlign="start center" fxLayoutGap="4px">
+        <div fxFlex="10" *ngFor="let brand of (shareProductService.brandsGet() | async)">
+            <button fxFlexFill mat-raised-button [color]="brand.id === idBrand ? 'accent' : ''" (click)="onBrandSelect(brand.id)">{{ brand.name }}</button>
+        </div>
+    </div>
+    <div fxLayout fxLayoutAlign="start center" fxLayoutGap="4px">
+        <div fxFlex="10" *ngFor="let category of (shareProductService.categoriesGet() | async)">
+            <button fxFlexFill mat-raised-button [color]="category.id === idCategory ? 'warn' : ''" (click)="onCategorySelect(category.id)">{{ category.name }}</button>
+        </div>
+    </div>
+</div>

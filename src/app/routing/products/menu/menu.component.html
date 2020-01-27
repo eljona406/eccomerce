@@ -1,0 +1,25 @@
+<div fxLayout fxLayoutAlign="start center">
+    <div>Gender: </div>
+    <div>
+        <button mat-button>Male</button>
+    </div>
+    <div>
+        <button mat-button>Female</button>
+    </div>
+</div>
+<div fxLayout fxLayoutAlign="start center">
+    <div>Brand: </div>
+    <div *ngFor="let brand of (shareProductService.brandsGet() | async)">
+        <button mat-button>{{ brand.name }}</button>
+    </div>
+</div>
+<div fxLayout fxLayoutAlign="start center">
+    <div>Category: </div>
+    <div *ngFor="let category of (shareProductService.categoriesGet() | async)">
+        <button mat-button>{{ category.name }}</button>
+    </div>
+
+
+
+</div>
+

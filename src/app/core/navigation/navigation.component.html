@@ -1,0 +1,28 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+    [attr.role]="(sharedService.isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(sharedService.isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(sharedService.isHandset$ | async) === false">
+    <mat-toolbar>Logo</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="products">Products</a>
+      <a mat-list-item routerLink="users"
+        *ngIf="sharedUserService.me != null && sharedUserService.me.role == Role.Admin">Users</a>
+      <a mat-list-item routerLink="contactUs">Contact Us</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayoutAlign="space-between center">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="sharedService.isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div *ngIf="!(sharedService.isHandset$ | async)"></div>
+      <div>
+        <app-profile></app-profile>
+      </div>
+    </mat-toolbar>
+    <div style="width: 100%; height: 100%; padding: 4px;">
+      <router-outlet></router-outlet></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

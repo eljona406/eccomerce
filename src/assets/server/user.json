@@ -1,0 +1,51 @@
+[
+    {
+        "username": "admin",
+        "password": "1234",
+        "role": 1
+    },
+    {
+        "username": "user1",
+        "password": "1234",
+        "role": 2,
+        "balance": 3270,
+        "purchases": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "username": "user2",
+        "password": "1234",
+        "role": 2,
+        "balance": 2500,
+        "purchases": [
+            2,
+            3,
+            4
+        ]
+    },
+    {
+        "username": "user3",
+        "password": "1234",
+        "role": 2,
+        "balance": 2500,
+        "purchases": [
+            4,
+            6,
+            7
+        ]
+    },
+    {
+        "username": "user4",
+        "password": "1234",
+        "role": 2,
+        "balance": 2500,
+        "purchases": [
+            2,
+            5,
+            6
+        ]
+    }
+]

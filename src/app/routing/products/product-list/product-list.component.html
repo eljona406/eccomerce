@@ -1,0 +1,27 @@
+<div fxLayout fxLayoutGap="4px">
+    <mat-card fxFlex="20" *ngFor="let product of (productsGet() | async)">
+        <img mat-card-image [src]="product.imgUrl" alt="product">
+        <mat-card-content>
+            <div fxLayout fxLayoutGap="4px">
+                <div style="font-weight: bold;" fxFlex="30">Gender:</div>
+                <div fxFlex>{{ product.gender === 1 ? 'Male': 'Female' }}</div>
+            </div>
+            <div fxLayout fxLayoutGap="4px" *ngIf="sharedProductService.brandGet(product.idBrand)">
+                <div style="font-weight: bold;" fxFlex="30">Brand:</div>
+                <div fxFlex>{{ sharedProductService.brandGet(product.idBrand).name }}</div>
+            </div>
+            <div fxLayout fxLayoutGap="4px" *ngIf="sharedProductService.categoryGet(product.idCategory)">
+                <div style="font-weight: bold;" fxFlex="30">Category:</div>
+                <div fxFlex>{{ sharedProductService.categoryGet(product.idCategory).name }}</div>
+            </div>
+            <div fxLayout fxLayoutGap="4px">
+                <div style="font-weight: bold;" fxFlex="30">Price:</div>
+                <div fxFlex>{{ product.displayPrice }} $</div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="!sharedUserService.me || sharedUserService.me.role === 1" *ngIf="!sharedUserService.me || !sharedUserService.me.isInCart(product.id)" (click)="addToCart(product.id)">ADD To Cart</button>
+          <button mat-raised-button color="warn" *ngIf="sharedUserService.me && sharedUserService.me.isInCart(product.id)" (click)="removeFromCart(product.id)">REMOVE FROM CART</button>
+        </mat-card-actions>
+      </mat-card>
+</div>

@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutGap="4px">
+    <div *ngFor="let idProduct of sharedUserService.me.cart">
+        <ng-container *ngIf="productGet(idProduct) as product">
+            <mat-card fxLayout fxLayout="start center" fxLayoutGap="4px">
+                <img style="width: 60px; height: 60px;" mat-card-image [src]="product.imgUrl" alt="product">
+                <mat-card-content fxFlex="80" style="height: 60px;">
+                    <div fxLayout fxLayoutGap="4px">
+                        <div style="font-weight: bold;" fxFlex="30">Gender:</div>
+                        <div fxFlex>{{ product.gender === 1 ? 'Male': 'Female' }}</div>
+                    </div>
+                    <div fxLayout fxLayoutGap="4px" *ngIf="sharedProductService.brandGet(product.idBrand)">
+                        <div style="font-weight: bold;" fxFlex="30">Brand:</div>
+                        <div fxFlex>{{ sharedProductService.brandGet(product.idBrand).name }}</div>
+                    </div>
+                    <div fxLayout fxLayoutGap="4px" *ngIf="sharedProductService.categoryGet(product.idCategory)">
+                        <div style="font-weight: bold;" fxFlex="30">Category:</div>
+                        <div fxFlex>{{ sharedProductService.categoryGet(product.idCategory).name }}</div>
+                    </div>
+                    <div fxLayout fxLayoutGap="4px">
+                        <div style="font-weight: bold;" fxFlex="30">Price:</div>
+                        <div fxFlex>{{ product.displayPrice }} $</div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions style="width: 60px; height: 60px;">
+                    <button mat-raised-button color="warn" (click)="removeFromCart(product.id)">REMOVE FROM CART</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-container>
+    </div>
+</div>
